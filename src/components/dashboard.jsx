@@ -45,7 +45,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/reports");
+        const response = await axios.get("https://kivulisafebackend-production.up.railway.app/reports");
         setReports(response.data);
       } catch (error) {
         console.error("Error fetching reports", error);
@@ -143,7 +143,7 @@ const Dashboard = () => {
         <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Liste des Signalements</h3>
         <button onClick={exportTableToExcel} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Exporter en Excel</button>
         <button onClick={exportChartToPDF} className="mb-4 ml-2 px-4 py-2 bg-green-500 text-white rounded">Exporter le Graphique en PDF</button>
-        <button onClick={exportMapToImage} className="mb-4 ml-2 px-4 py-2 bg-red-500 text-white rounded">Exporter la Carte en Image</button>
+        {/* <button onClick={exportMapToImage} className="mb-4 ml-2 px-4 py-2 bg-red-500 text-white rounded">Exporter la Carte en Image</button> */}
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <thead>
             <tr>

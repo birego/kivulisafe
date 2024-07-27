@@ -40,7 +40,7 @@ export default function Home() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/report", {
+      const response = await axios.post("https://kivulisafebackend-production.up.railway.app/report", {
         ...data,
         latitude: location?.lat,
         longitude: location?.lng,
@@ -143,9 +143,9 @@ export default function Home() {
                 }`}
               >
                 <option value="">Sélectionnez la catégorie</option>
-                <option value="cat1">Catégorie 1</option>
-                <option value="cat2">Catégorie 2</option>
-                <option value="cat3">Catégorie 3</option>
+                <option value="vol">vol</option>
+                <option value="viol">viol</option>
+                <option value="agression">Agression</option>
               </select>
               {errors.category && (
                 <p className="mt-2 text-sm text-red-600">

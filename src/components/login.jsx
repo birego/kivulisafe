@@ -12,7 +12,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.get("http://localhost:5000/login", {
+      const response = await axios.get("https://kivulisafebackend-production.up.railway.app/login", {
         params: { email: data.email, password: data.password },
       });
 

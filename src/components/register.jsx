@@ -12,7 +12,7 @@ export default function Register() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/register", data);
+      const response = await axios.post("https://kivulisafebackend-production.up.railway.app/register", data);
       if (response.status === 201) {
         navigate("/login");
       } else {
