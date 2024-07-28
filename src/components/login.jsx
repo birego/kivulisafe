@@ -1,31 +1,32 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../components/auth/AuthProvider';
 import axios from "axios";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.get("https://kivulisafebackend-production.up.railway.app/login", {
-        params: { email: data.email, password: data.password },
+      const response = await axios.post('https://kivulisafebackend-production.up.railway.app/login', {
+        email: data.email,
+        password: data.password
       });
 
-      const user = response.data[0];
-
-      if (user) {
+      if (response.status === 200) {
+        const { token } = response.data;
+        await login(data.email, data.password);
         navigate("/dashboard");
       } else {
-        alert("Invalid email or password");
+        throw new Error("Login failed with status: " + response.status);
       }
     } catch (error) {
       console.error("Error logging in", error);
-      alert("An error occurred. Please try again.");
+      toast.error(error.response ? error.response.data.message : "Login failed. Please check your credentials and try again.");
     }
   };
 
